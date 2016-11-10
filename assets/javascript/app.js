@@ -15,7 +15,7 @@
 // ========================================================
 var topics = ['dog', 'cat', 'fish', 'turtle'];
 // displayTopicInfo function now re-renders the HTML to display the appropriate content. 
-$(document).on('click', '.topic', function () {
+$(document).on('click', '.topicTop', function () {
     var topic = $(this).attr('data-topic');
 
     console.log("TOPIC:" + topic);
@@ -35,12 +35,12 @@ $(document).on('click', '.topic', function () {
             var topicsDiv = $('<div class="topic pull-left">');
             var p = $('<p>').text("Rating: " + results[i].rating);
             var topicImage = $('<img>');
-            topicImage.attr('src', results[i].images.fixed_height.url);
+            topicImage.attr('src', results[i].images.fixed_height_still.url);
             
             topicImage.addClass('gif');
-            topicImage.attr('data-state', 'animate');
+            topicImage.attr('data-state', 'still');
             topicImage.attr('data-animate', results[i].images.fixed_height.url);
-            topicImage.attr('data-still', results[i].images.original_still.url);
+            topicImage.attr('data-still', results[i].images.fixed_height_still.url);
 
             topicsDiv.append(p);
             topicsDiv.append(topicImage);
@@ -59,7 +59,7 @@ function renderButtons() {
         // Then dynamicaly generates buttons for each movie in the array
         // Note the jQUery syntax here... 
         var a = $('<button>'); // This code $('<button>') is all jQuery needs to create the beginning and end tag. (<button></button>)
-        a.addClass('topic'); // Added a class
+        a.addClass('topicTop'); // Added a class
         a.attr('data-topic', topics[i]); // Added a data-attribute
         a.text(topics[i]); // Provided the initial button text
         $('#topicButtons').append(a); // Added the button to the HTML
@@ -83,9 +83,9 @@ $(document).ready(function () {
     });
 });
 
+
 $(document).on('click', '.gif', function () { 
 
-    console.log($('.gif').val());
     if ($(this).attr('data-state') == 'still'){
                 $(this).attr('src', $(this).data('animate')); // var anuimatedGif = $(this).data('animate'); then replace the part after the 'src'
                 $(this).attr('data-state', 'animate');
