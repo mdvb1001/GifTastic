@@ -13,7 +13,7 @@
 //  > Get those new gifs to start and stop 
 // PHASE 5: Get the API to connect to the
 // ========================================================
-var topics = ['dog', 'cat', 'fish', 'turtle'];
+var topics = ['Matisse', 'Picasso', 'Van Gogh', 'Jackson Pollock', 'Leonordo da vinci', 'Vermeer', 'Andy Warhol', 'Georges Seurat', 'Campbell\'s soup Warhol'];
 // displayTopicInfo function now re-renders the HTML to display the appropriate content. 
 $(document).on('click', '.topicTop', function () {
     var topic = $(this).attr('data-topic');
@@ -58,7 +58,7 @@ function renderButtons() {
     for (var i = 0; i < topics.length; i++) {
         // Then dynamicaly generates buttons for each movie in the array
         // Note the jQUery syntax here... 
-        var a = $('<button>'); // This code $('<button>') is all jQuery needs to create the beginning and end tag. (<button></button>)
+        var a = $("<button class='btn btn-default'>"); // This code $('<button>') is all jQuery needs to create the beginning and end tag. (<button></button>)
         a.addClass('topicTop'); // Added a class
         a.attr('data-topic', topics[i]); // Added a data-attribute
         a.text(topics[i]); // Provided the initial button text
@@ -77,6 +77,7 @@ $(document).ready(function () {
         // The movie from the textbox is then added to our array
         topics.push(newtopic);
         // Our array then runs which handles the processing of our movie array
+        $('#topic-input').empty();
         renderButtons();
         // We have this line so that users can hit "enter" instead of clicking on ht button and it won't move to the next page
         return false;

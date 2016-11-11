@@ -1,7 +1,51 @@
+body {
+	background-image: url("../images/ignasi_pattern_s.png");
+}
+
 .topic {
 	display: inline;
 }
 
-img {
-	margin: 10px;
+
+#topic-input {
+	margin: 0;
+}
+/*label {
+	font-size: 20px;
+	overflow: hidden;
+}*/
+
+.addArtist {
+	padding: 0;
+}
+
+.btn-default {
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.submitButton {
+	margin-left: 10px;
+	background: black;
+}
+
+h1 {
+	border: 5px solid black;
+	padding: 10px 0;
+	background: white;
+}
+
+.topic.pull-left {
+	margin-left: 0;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.form-group{
+	padding: 0px;
+	margin: 0px;
+}
+
+#topicsHere {
+	margin-top: 30px;
 }
