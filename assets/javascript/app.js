@@ -20,7 +20,7 @@ var topics = ['Matisse', 'Picasso', 'Van Gogh', 'Jackson Pollock', 'Leonordo da 
 $(document).on('click', '.topicTop', function () {
     var topic = $(this).attr('data-topic');
     // The query only calls on the first ten results
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=dc6zaTOxFJmzC&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=dc6zaTOxFJmzC&limit=10";
     // Creates AJAX call for the specific topic being 
     $.ajax({
         url: queryURL,
