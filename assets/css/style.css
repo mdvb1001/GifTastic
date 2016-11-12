@@ -1,62 +1,62 @@
 body {
-	background-image: url("../images/ignasi_pattern_s.png");
+    background-image: url("../images/ignasi_pattern_s.png");
 }
 
 .topic {
-	display: inline;
+    display: inline;
 }
-
 
 #topic-input {
-	margin: 0;
+    margin: 0;
 }
+
+
 /*label {
 	font-size: 20px;
 	overflow: hidden;
 }*/
 
 .addArtist {
-	padding: 0;
+    padding: 0;
 }
 
 .btn-default {
-	margin-right: 10px;
-	margin-bottom: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .submitButton {
-	margin-left: 10px;
-	background: black;
+    margin-left: 10px;
+    background: black;
 }
 
 h1 {
-	font-family: cursive;
-	border: 3px solid black;
-	border-radius: 5px;
-	padding: 10px 0;
-	background: white;
-	font-size: 45px;
-	font-weight: none;
-	vertical-align: middle;
+    font-family: cursive;
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 10px 0;
+    background: white;
+    font-size: 45px;
+    font-weight: none;
+    vertical-align: middle;
 }
 
 .topic.pull-left {
-	margin-left: 0;
-	margin-bottom: 10px;
-	margin-right: 10px;
+    margin-left: 0;
+    margin-bottom: 10px;
+    margin-right: 10px;
 }
 
-.form-group{
-	padding: 0px;
-	margin: 0px;
+.form-group {
+    padding: 0px;
+    margin: 0px;
 }
 
 #topicsHere {
-	margin-top: 30px;
+    margin-top: 30px;
 }
 
 .title {
-	margin-top: 10px;
-	margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
-
