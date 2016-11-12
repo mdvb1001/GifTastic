@@ -1,4 +1,5 @@
-// PHASE 1: Work basic html divs -- using Bootstrap 
+//PSEUDO CODE: 
+//PHASE 1: Work basic html divs -- using Bootstrap 
 //  > top of the page div is for buttons <div id="topicButtons">  
 //  > Search bar to the right if possible 
 //		> <form id="topic-form">
@@ -13,15 +14,14 @@
 //  > Get those new gifs to start and stop 
 // PHASE 5: Get the API to connect to the
 // ========================================================
+// This is the array of topics that show up at the top of the page
 var topics = ['Matisse', 'Picasso', 'Van Gogh', 'Jackson Pollock', 'Leonordo da vinci', 'Vermeer', 'Andy Warhol', 'Georges Seurat', 'Campbell\'s soup Warhol'];
-// displayTopicInfo function now re-renders the HTML to display the appropriate content. 
+// displayTopicInfo function now renders the HTML to display the appropriate content. 
 $(document).on('click', '.topicTop', function () {
     var topic = $(this).attr('data-topic');
-
-    console.log("TOPIC:" + topic);
+    // The query only calls on the first ten results
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=dc6zaTOxFJmzC&limit=10";
     // Creates AJAX call for the specific topic being 
-    console.log('HERE');
     $.ajax({
         url: queryURL,
         method: 'GET'
@@ -29,78 +29,72 @@ $(document).on('click', '.topicTop', function () {
         console.log(response);
         var results = response.data;
         //--------------------------------
-        console.log('HERE 2');
+        //we empty the div where the Gifs go
         $('#topicsHere').empty();
+        //for loop to go through all ten gifs
         for (var i = 0; i < results.length; i++) {
             var topicsDiv = $('<div class="topic pull-left">');
             var p = $('<p>').text("Rating: " + results[i].rating);
             var topicImage = $('<img>');
+            // the gifs appear in their still state at first
             topicImage.attr('src', results[i].images.fixed_height_still.url);
             
             topicImage.addClass('gif');
+            // the state must be set to "still" first
             topicImage.attr('data-state', 'still');
+            // this is used to "animate" the gifs
             topicImage.attr('data-animate', results[i].images.fixed_height.url);
+            // this is used to make the gifs "still"
             topicImage.attr('data-still', results[i].images.fixed_height_still.url);
-
+            // the gifs are sent to the HTML along with their respective rating
             topicsDiv.append(p);
             topicsDiv.append(topicImage);
+            // This is where the gifs go 
             $('#topicsHere').prepend(topicsDiv);
-
         }
     });
 });
-// ========================================================
-// Generic function for displaying movie data 
+// Generic function for displaying the buttons 
 function renderButtons() {
-    // Deletes the movies prior to adding new movies (this is necessary otherwise you will have repeat buttons)
+    // Deletes the topics prior to adding new topics/artists
     $('#topicButtons').empty();
-    // Loops through the array of movies
+    // Loops through the array of topics
     for (var i = 0; i < topics.length; i++) {
-        // Then dynamicaly generates buttons for each movie in the array
-        // Note the jQUery syntax here... 
-        var a = $("<button class='btn btn-default'>"); // This code $('<button>') is all jQuery needs to create the beginning and end tag. (<button></button>)
-        a.addClass('topicTop'); // Added a class
-        a.attr('data-topic', topics[i]); // Added a data-attribute
+        // Then dynamicaly generates buttons for each topic/artist in the array
+        var a = $("<button>"); // jQuery creates buttons with specific class
+        a.addClass('topicTop btn btn-default'); // Added a specific class
+        a.attr('data-topic', topics[i]); // Added a data-attribute that uses name of topic
         a.text(topics[i]); // Provided the initial button text
         $('#topicButtons').append(a); // Added the button to the HTML
     }
 }
-// ========================================================
-// $(document).ready(function () {
 // This function handles events where one button is clicked
 $(document).ready(function () {
     renderButtons();
     $('#addTopic').on('click', function () {
-        console.log("addTopic");
-        // This line of code will grab the input from the textbox
+        // This line of code will grab the input from the textbox and trim either extremities of any spaces
         var newtopic = $('#topic-input').val().trim();
-        // The movie from the textbox is then added to our array
+        // The topic from the textbox is then added to our array
         topics.push(newtopic);
-        // Our array then runs which handles the processing of our movie array
-        $('#topic-input').empty();
+        
+        // The button is then rendered
         renderButtons();
-        // We have this line so that users can hit "enter" instead of clicking on ht button and it won't move to the next page
+        // This erases the input once the button is submit button is clicked
+        $('#topic-input').val('');
+        // this is so that the page doesn't refresh once we click on the 'submit' button
         return false;
     });
 });
 
-
+// This function handles the state of the gifs 
 $(document).on('click', '.gif', function () { 
 
-    if ($(this).attr('data-state') == 'still'){
-                $(this).attr('src', $(this).data('animate')); // var anuimatedGif = $(this).data('animate'); then replace the part after the 'src'
-                $(this).attr('data-state', 'animate');
-            }else{
-                $(this).attr('src', $(this).data('still'));
-                $(this).attr('data-state', 'still');
+    if ($(this).attr('data-state') == 'still'){ //if the state is still...
+                $(this).attr('src', $(this).data('animate')); //... then change the src to 'animate' (which we get from Giphy API)
+                $(this).attr('data-state', 'animate'); //... and change the name of the state to 'animate'
+            }else{ //conversely, if the state is 'animate'...
+                $(this).attr('src', $(this).data('still')); // then change the src to 'still' (which we get from Giphy API)
+                $(this).attr('data-state', 'still'); // and change the state to 'still'
             }
 });
 
-
-
-
-// ========================================================
-// Generic function for displaying the movieInfo
-// $(document).on('click', '.topic', displayTopicInfo);
-// ========================================================
-// This calls the renderButtons() function
